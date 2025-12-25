@@ -8,6 +8,7 @@ const {
   logout,
   searchUser,
   myInfo,
+  allUsers,
 } = require("../controllers/user.controllers");
 
 const authMiddleware = require("../middleware/auth.middleware");
@@ -38,6 +39,7 @@ router.route("/user/:id").get(authMiddleware, userDetails);
 router.route("/user/follow/:id").put(authMiddleware, followUser);
 router.route("/update-profile").put(authMiddleware, updateProfile);
 router.route("/users/search/:query").get(authMiddleware, searchUser);
+router.route("/users").get(authMiddleware, allUsers);
 
 // Post Routes
 router.route("/post").post(authMiddleware, addPost);

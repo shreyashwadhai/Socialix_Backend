@@ -335,3 +335,20 @@ exports.myInfo = async (req, res) => {
     })
   }
 }
+
+exports.allUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    console.log(users);
+
+    res.status(200).json({
+      message: "All Users Fetched !",
+      users
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Error in Fetching All Users !",
+      error: error.message,
+    });
+  }
+}
