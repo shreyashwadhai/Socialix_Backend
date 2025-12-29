@@ -1,5 +1,5 @@
 const express = require('express');
-// const dotenv = require('dotenv');
+
 require('dotenv').config();
 
 const connectDB = require('./config/db');
@@ -7,13 +7,13 @@ const router = require('./routes/user.routes');
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 
-// dotenv.config();
 const app = express();
 connectDB();
 
 app.use(cors({
     // origin: "https://socialix.netlify.app",
-    origin: "http://localhost:5173",
+    origin: "*",
+    // origin: "http://13.201.73.79",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
