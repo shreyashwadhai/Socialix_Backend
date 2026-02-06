@@ -10,12 +10,21 @@ const cors = require("cors");
 const app = express();
 connectDB();
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://socialix-backend.onrender.com",
+];
+
 app.use(cors({
-    // origin: "https://socialix.netlify.app",
-    origin: "*",
-    // origin: "http://13.201.73.79",
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["Set-Cookie"],
 
