@@ -12,7 +12,7 @@ connectDB();
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://socialix-backend.onrender.com",
+    "https://socialix.netlify.app",
 ];
 
 app.use(cors({
